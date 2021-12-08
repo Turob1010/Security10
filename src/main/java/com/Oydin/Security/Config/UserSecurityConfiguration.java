@@ -39,10 +39,12 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/register").permitAll()
                 .antMatchers("/students/save").hasRole("ADMIN")
+                .antMatchers("/students/update").hasRole("ADMIN")
+                .antMatchers("/students/delete").hasRole("ADMIN")
                 .antMatchers("students/*").hasAnyRole("ADMIN","USER")
                 .anyRequest().authenticated()
                 .and()
-                .httpBasic();
+                .formLogin();
 
     }
 
